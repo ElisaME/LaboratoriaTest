@@ -30,7 +30,26 @@ $(function() {
             year: $("#music_year").val(),
             genre: $("#music_genre").val()
         };
-        
+        //Validaciones de form
+        if(song.title.trim() == ''){
+            $('.errors').text('El campo title debe estar lleno');
+            return;
+        }
+        if(song.artist.trim() == ''){
+            $('.errors').text('El campo artist  debe estar lleno');
+            return;
+        }
+        if(song.year.trim() == ''){
+            $('.errors').text('El campo yeat debe estar lleno');
+            return;
+        }
+        if (song.year < 1900 or > 2016){
+            $('.errors').text('Año no válido')
+        }
+        if(song.genre.trim() == ''){
+            $('.errors').text('El campo genre debe estar lleno');
+            return;
+        }
         manageStatus("Status: Sending request...", true);
         
         $.ajax({
@@ -58,6 +77,7 @@ $(function() {
     var deleteSong = function (event) {
         event.preventDefault();
         event.stopImmediatePropagation();
+
     };
     
     var init = function () {

@@ -1,32 +1,34 @@
 <section>
-  <h1>Music Database</h1>
+<div class="col-md-6 col-md-offset-3">
+  <h1>MUSIC DATABASE</h1>
   <h2>Add a Song</h2>
   <p class="status"></p>
-  <div class="errors"></div>
+  <div class="errors bg-danger"></div>
   <%= form_for(@music) do |f| %>
     <div class="field">
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
+      <%= f.label :title%><br>
+      <%= f.text_field :title, class:'form-control',required:true, :maxlength => 40 %>
     </div>
     <div class="field">
       <%= f.label :artist %><br>
-      <%= f.text_field :artist %>
+      <%= f.text_field :artist,  class:'form-control',required:true,:maxlength => 60 %>
     </div>
     <div class="field">
       <%= f.label :year %><br>
-      <%= f.text_field :year %>
+      <%= f.text_field :year,  class:'form-control',required:true %>
     </div>
     <div class="field">
       <%= f.label :genre %><br>
-      <%= f.text_field :genre %>
+      <%= f.text_field :genre,  class:'form-control',required:true,:maxlength => 30 %>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%#= f.submit %>
+      <%= f.submit :class => 'btn btn-primary' %>
     </div>
   <% end %>
   
   <h2>List of Songs</h2>
-  <table id="music_list">
+  <table id="music_list" class="table table-stripped">
     <thead>
       <tr>
         <th>Title</th>
@@ -49,5 +51,9 @@
       <% end %>
     </tbody>
   </table>
-  <p class="no_music">No music yet... please, add some!</p>
+  <% if @musics.empty? then %>
+    <p class="no_music bg-warning text-center">No music yet... please, add some!</p>
+  <% end %>
+  
+</div>
 </section>
